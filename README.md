@@ -60,3 +60,17 @@ To run the analysis, MATLAB and the required input files and supporting function
 
 The required files and execution instructions will be documented as the repository is organized.
 
+## Backtesting Results
+
+### Out-of-Sample Evaluation (OS*)
+
+Comparison of the portfolio model, individual allocation strategies, and the Euro Stoxx benchmark.
+
+![Out-of-sample backtest OS*](backtest-os1.png)
+
+### Top-15 Portfolio Backtest (OS**)
+
+Performance comparison between the Top-15 portfolio and the Euro Stoxx benchmark, including risk-adjusted performance indicators.
+
+![Top-15 portfolio backtest OS**](/back-test2.png)
+
