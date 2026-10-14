@@ -1,0 +1,24 @@
+function [gmv,vol_gmv,rend_gmv,sharpe_gmv] = GMV_vincolato(matrice_covarianze, rendimenti_medi)
+
+% Trova pesi del portafoglio a varainza minima
+
+rendimenti_medi=rendimenti_medi(:);
+num_titoli = size(rendimenti_medi,1);
+
+prob = optimproblem('Description','Trovare GMV',"ObjectiveSense","min");
+pesi = optimvar('pesi',num_titoli,1,LowerBound=0,UpperBound=1);
+
+prob.Constraints.sommapesi = sum(pesi) == 1; 
+
+f = 0.5*pesi'*matrice_covarianze*pesi;
+prob.Objective = f;
+
+initialGuess.pesi = zeros(size(pesi));
+
+sol = solve(prob,initialGuess);
+gmv = sol.pesi;
+vol_gmv = sqrt(gmv' * matrice_covarianze * gmv);     
+rend_gmv = rendimenti_medi' * gmv;                   
+sharpe_gmv = rend_gmv / vol_gmv;                     
+
+end
